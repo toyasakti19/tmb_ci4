@@ -551,7 +551,7 @@
 													<h3>Latest News &amp; Articles</h3>
 												</div>
 												<div class="subtitle">
-													<p>Berita atau artikel terkait kegiatan dan project yang saya lakukan.</p>
+													<p>Berita & artikel terkait kegiatan dan project yang kami kerjakan.</p>
 												</div>
 											</div>
 											<div class="news_list">

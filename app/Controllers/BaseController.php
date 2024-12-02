@@ -15,7 +15,7 @@ use Psr\Log\LoggerInterface;
  * Extend this class in any new controllers:
  *     class Home extends BaseController
  *
- * For security be sure to declare any new methods as protected or private.
+ * For security, be sure to declare any new methods as protected or private.
  */
 class BaseController extends Controller
 {
@@ -29,18 +29,45 @@ class BaseController extends Controller
     protected $helpers = ['form', 'website'];
 
     /**
-     * Constructor.
+     * Instance of the session service.
+     *
+     * @var \CodeIgniter\Session\Session|null
      */
-    public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
+    protected $session;
+
+    /**
+     * Instance of the database connection.
+     *
+     * @var \CodeIgniter\Database\BaseConnection|null
+     */
+    protected $db;
+
+    /**
+     * Constructor.
+     *
+     * @param RequestInterface  $request
+     * @param ResponseInterface $response
+     * @param LoggerInterface   $logger
+     */
+    public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger): void
     {
         // Do Not Edit This Line
         parent::initController($request, $response, $logger);
 
         //--------------------------------------------------------------------
-        // Preload any models, libraries, etc, here.
+        // Preload any models, libraries, etc., here.
         //--------------------------------------------------------------------
-        // E.g.: $this->session = \Config\Services::session();
+        // Initialize session and database services
         $this->session = \Config\Services::session();
         $this->db      = \Config\Database::connect();
+
+        // Ensure proper initialization in case of null issues
+        if ($this->session === null) {
+            throw new \RuntimeException('Session service could not be initialized.');
+        }
+
+        if ($this->db === null) {
+            throw new \RuntimeException('Database connection could not be established.');
+        }
     }
 }

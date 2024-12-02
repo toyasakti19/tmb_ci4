@@ -929,10 +929,12 @@ abstract class BaseConnection implements ConnectionInterface
      *
      * Used by the Debug Toolbar's timeline.
      */
-    public function getConnectDuration(int $decimals = 6): string
-    {
-        return number_format($this->connectDuration, $decimals);
-    }
+public function getConnectDuration(int $decimals = 6): string
+{
+    // Pastikan $connectDuration dikonversi menjadi float sebelum diformat
+    return number_format((float) $this->connectDuration, $decimals);
+}
+
 
     /**
      * Protect Identifiers

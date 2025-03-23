@@ -26,7 +26,7 @@ class Iframe extends BaseController
             </style>
         </head>
         <body>
-            <iframe src="https://tmb.daihatsutajur.web.id/"></iframe>
+            <iframe src="https://tmb-ipb.my.id/"></iframe>
         </body>
         </html>
         HTML;
